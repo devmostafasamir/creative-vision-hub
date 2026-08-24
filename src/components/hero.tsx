@@ -111,7 +111,7 @@ export function Hero() {
                   alt="Illustrated portrait of Mostafa Samir, a healthcare full-stack engineer"
                   width={1024}
                   height={1024}
-                  className="float-slow size-full object-cover"
+                  className="float-slow size-full object-cover object-top"
                   initial={reduce ? false : { scale: 1.12 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.5, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
