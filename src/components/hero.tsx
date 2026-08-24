@@ -47,21 +47,17 @@ export function Hero() {
       <div className="relative mx-auto max-w-6xl">
         {/* Giant wordmark */}
         <h1 className="sr-only">Mostafa Samir — Healthcare Full-Stack Engineer Portfolio 2026</h1>
-        <div
+        <motion.div
           aria-hidden
           className="flex w-full items-center justify-center overflow-hidden font-display leading-[0.8] font-extrabold tracking-[-0.05em] text-foreground"
           style={{ fontSize: "clamp(3.5rem, 15.5vw, 13rem)" }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
         >
           {WORD_BEFORE.map((c, i) => (
-            <span key={`b-${i}`} className="inline-block overflow-hidden">
-              <motion.span
-                className="inline-block"
-                variants={letter}
-                custom={i}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: false, amount: 0.4 }}
-              >
+            <span key={`b-${i}`} className="inline-block overflow-hidden pb-[0.06em]">
+              <motion.span className="inline-block" variants={letter} custom={i}>
                 {c}
               </motion.span>
             </span>
@@ -71,34 +67,38 @@ export function Hero() {
           <motion.span
             className="mx-[0.06em] inline-block rounded-full border-[0.115em] border-current"
             style={{ height: "0.52em" }}
-            initial={reduce ? { width: "1.05em", opacity: 1 } : { width: "0.16em", opacity: 0 }}
-            whileInView={{
-              width: reduce ? "1.05em" : ["0.16em", "1.18em", "1.05em"],
-              opacity: 1,
+            variants={{
+              hidden: reduce
+                ? { width: "1.05em", opacity: 1 }
+                : { width: "0.16em", opacity: 0 },
+              show: {
+                width: reduce ? "1.05em" : ["0.16em", "1.18em", "1.05em"],
+                opacity: 1,
+                transition: reduce
+                  ? { duration: 0 }
+                  : {
+                      delay: pillDelay,
+                      duration: 1.35,
+                      ease: [0.16, 1, 0.3, 1],
+                      times: [0, 0.72, 1],
+                    },
+              },
             }}
-            viewport={{ once: false, amount: 0.4 }}
-            transition={
-              reduce
-                ? { duration: 0 }
-                : { delay: pillDelay, duration: 1.35, ease: [0.16, 1, 0.3, 1], times: [0, 0.72, 1] }
-            }
           />
 
           {WORD_AFTER.map((c, i) => (
-            <span key={`a-${i}`} className="inline-block overflow-hidden">
+            <span key={`a-${i}`} className="inline-block overflow-hidden pb-[0.06em]">
               <motion.span
                 className="inline-block"
                 variants={letter}
                 custom={WORD_BEFORE.length + 1 + i}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: false, amount: 0.4 }}
               >
                 {c}
               </motion.span>
             </span>
           ))}
-        </div>
+        </motion.div>
+
 
         <motion.p
           className="mx-auto mt-4 max-w-xl text-center text-sm text-muted-foreground sm:text-base"
