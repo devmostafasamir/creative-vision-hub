@@ -105,7 +105,7 @@ export function Hero() {
         >
           <div className="slide-card relative overflow-hidden rounded-[2rem] bg-brand-sky/25 p-3 sm:rounded-[2.5rem] sm:p-4">
             <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-brand-sky/40 sm:rounded-[2rem]">
-              <Parallax strength={-26}>
+              <Parallax strength={-18} className="absolute inset-[-6%]">
                 <motion.img
                   src={portrait}
                   alt="Illustrated portrait of Mostafa Samir, a healthcare full-stack engineer"
