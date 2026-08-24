@@ -59,7 +59,8 @@ export function Hero() {
                 variants={letter}
                 custom={i}
                 initial="hidden"
-                animate="show"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.4 }}
               >
                 {c}
               </motion.span>
@@ -70,12 +71,16 @@ export function Hero() {
           <motion.span
             className="mx-[0.06em] inline-block rounded-full border-[0.115em] border-current"
             style={{ height: "0.52em" }}
-            initial={reduce ? { width: "1.05em", opacity: 1 } : { width: "0.2em", opacity: 0 }}
-            animate={{ width: "1.05em", opacity: 1 }}
+            initial={reduce ? { width: "1.05em", opacity: 1 } : { width: "0.16em", opacity: 0 }}
+            whileInView={{
+              width: reduce ? "1.05em" : ["0.16em", "1.18em", "1.05em"],
+              opacity: 1,
+            }}
+            viewport={{ once: false, amount: 0.4 }}
             transition={
               reduce
                 ? { duration: 0 }
-                : { delay: pillDelay, duration: 1.1, ease: [0.16, 1, 0.3, 1] }
+                : { delay: pillDelay, duration: 1.35, ease: [0.16, 1, 0.3, 1], times: [0, 0.72, 1] }
             }
           />
 
@@ -86,7 +91,8 @@ export function Hero() {
                 variants={letter}
                 custom={WORD_BEFORE.length + 1 + i}
                 initial="hidden"
-                animate="show"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.4 }}
               >
                 {c}
               </motion.span>
