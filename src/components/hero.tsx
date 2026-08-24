@@ -62,9 +62,9 @@ export function Hero() {
           {/* The stadium "o" */}
           <motion.span
             className="mx-[0.06em] inline-block rounded-full border-[0.115em] border-current"
-            style={{ height: "0.56em" }}
-            initial={reduce ? { width: "0.92em", opacity: 1 } : { width: "0.2em", opacity: 0 }}
-            animate={{ width: "0.92em", opacity: 1 }}
+            style={{ height: "0.52em" }}
+            initial={reduce ? { width: "1.05em", opacity: 1 } : { width: "0.2em", opacity: 0 }}
+            animate={{ width: "1.05em", opacity: 1 }}
             transition={
               reduce
                 ? { duration: 0 }
@@ -104,14 +104,14 @@ export function Hero() {
           transition={{ delay: 0.45, duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="slide-card relative overflow-hidden rounded-[2rem] bg-brand-sky/25 p-3 sm:rounded-[2.5rem] sm:p-4">
-            <div className="relative overflow-hidden rounded-[1.5rem] bg-brand-sky/40 sm:rounded-[2rem]">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-brand-sky/40 sm:rounded-[2rem]">
               <Parallax strength={-26}>
                 <motion.img
                   src={portrait}
                   alt="Illustrated portrait of Mostafa Samir, a healthcare full-stack engineer"
                   width={1024}
                   height={1024}
-                  className="float-slow mx-auto w-full max-w-md drop-shadow-[var(--shadow-image)]"
+                  className="float-slow size-full object-cover"
                   initial={reduce ? false : { scale: 1.12 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.5, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
