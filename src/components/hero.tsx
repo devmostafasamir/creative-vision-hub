@@ -13,17 +13,24 @@ export function Hero() {
   const reduce = useReducedMotion();
 
   const letter = {
-    hidden: { y: "110%", opacity: 0 },
+    hidden: { y: "120%", opacity: 0, rotate: 8, scale: 0.9 },
     show: (i: number) => ({
       y: "0%",
       opacity: 1,
+      rotate: 0,
+      scale: 1,
       transition: reduce
         ? { duration: 0 }
-        : { delay: 0.12 + i * 0.055, duration: 0.85, ease: [0.16, 1, 0.3, 1] as const },
+        : {
+            delay: 0.35 + i * 0.11,
+            duration: 1.1,
+            ease: [0.16, 1, 0.3, 1] as const,
+          },
     }),
   };
 
-  const pillDelay = 0.12 + WORD_BEFORE.length * 0.055;
+  const pillDelay = 0.35 + WORD_BEFORE.length * 0.11;
+
 
   return (
     <section id="top" className="dot-grid relative overflow-hidden px-4 pt-10 sm:px-6 lg:pt-14">
