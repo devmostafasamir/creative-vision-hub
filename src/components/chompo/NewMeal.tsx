@@ -1,19 +1,23 @@
-import chickenHand from "@/assets/collage-chicken-hand.jpg";
-import sunglassesBurger from "@/assets/collage-sunglasses-burger.jpg";
-import handsSandwich from "@/assets/collage-hands-sandwich.jpg";
+import chickenHand from "@/assets/cut-chicken-hand.png";
+import sunglassesBurger from "@/assets/cut-sunglasses-burger.png";
+import handsSandwich from "@/assets/cut-hands-sandwich.png";
 import { Marquee } from "./Marquee";
 
-const BLOB_TOP = "polygon(50% 0%, 92% 14%, 100% 58%, 74% 96%, 26% 100%, 2% 62%, 8% 18%)";
-
-function Line({ reverse = false }: { reverse?: boolean }) {
+/**
+ * Two near-identical type lines, stacked so tight they almost kiss, both
+ * sliding the same direction at slightly different speeds — the small drift
+ * is what makes the pair read as one wavy ribbon instead of a mirror.
+ */
+function Line({ durationSeconds }: { durationSeconds: number }) {
   return (
-    <Marquee durationSeconds={22} reverse={reverse}>
-      {[0, 1, 2].map((i) => (
+    <Marquee durationSeconds={durationSeconds}>
+      {[0, 1, 2, 3].map((i) => (
         <span
           key={i}
-          className="px-6 font-display text-[3.25rem] leading-[0.9] whitespace-nowrap text-signal sm:text-[5.5rem] lg:text-[7rem]"
+          className="pr-[0.18em] font-display text-[3.5rem] leading-[0.78] tracking-[-0.035em] whitespace-nowrap text-signal uppercase sm:text-[6rem] lg:text-[8.5rem]"
+          style={{ transform: "scaleX(1.04)", transformOrigin: "left center" }}
         >
-          NEW MEAL IN TOWN
+          New Meal in Town&nbsp;
         </span>
       ))}
     </Marquee>
@@ -22,15 +26,13 @@ function Line({ reverse = false }: { reverse?: boolean }) {
 
 export function NewMeal() {
   return (
-    <section className="relative isolate flex h-[420px] items-center overflow-hidden bg-cream sm:h-[520px] lg:h-[560px]">
+    <section className="relative isolate flex h-[420px] items-center overflow-hidden bg-cream sm:h-[520px] lg:h-[580px]">
       {/* Wavy double marquee, vertically centered */}
       <div className="absolute inset-x-0 top-1/2 z-10 -translate-y-1/2">
-        <div className="-rotate-[3deg]">
-          <div className="skew-y-[1.2deg]">
-            <Line />
-          </div>
-          <div className="-mt-[0.35em] -skew-y-[1.2deg]">
-            <Line reverse />
+        <div className="-rotate-[4deg] skew-y-[2deg]">
+          <Line durationSeconds={26} />
+          <div className="-mt-[0.14em]">
+            <Line durationSeconds={30} />
           </div>
         </div>
       </div>
@@ -39,30 +41,27 @@ export function NewMeal() {
       <div className="pointer-events-none absolute inset-0 z-20 mx-auto max-w-[1100px]">
         <img
           src={handsSandwich}
-          alt="Hand holding a crispy chicken sandwich"
+          alt="Crispy fried chicken sandwich"
           loading="lazy"
-          width={800}
-          height={800}
-          className="absolute top-[-2%] left-1/2 w-40 -translate-x-[115%] rotate-[6deg] object-cover sm:w-56 lg:w-64"
-          style={{ clipPath: BLOB_TOP }}
+          width={912}
+          height={1104}
+          className="absolute top-[-8%] left-1/2 w-48 -translate-x-[110%] rotate-[8deg] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.12)] sm:w-64 lg:w-80"
         />
         <img
           src={sunglassesBurger}
           alt="Person in sunglasses biting a burger"
           loading="lazy"
-          width={800}
-          height={800}
-          className="absolute top-[24%] left-1/2 w-44 -translate-x-[42%] rotate-[-2deg] object-cover sm:w-60 lg:w-72"
-          style={{ clipPath: BLOB_TOP }}
+          width={912}
+          height={912}
+          className="absolute top-[16%] left-1/2 w-52 -translate-x-[38%] rotate-[-2deg] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.12)] sm:w-72 lg:w-[22rem]"
         />
         <img
           src={chickenHand}
-          alt="Hand holding a fried chicken drumstick"
+          alt="Saucy spicy fried chicken drumstick"
           loading="lazy"
-          width={800}
-          height={800}
-          className="absolute top-[56%] left-1/2 w-40 -translate-x-[70%] rotate-[3deg] object-cover sm:w-56 lg:w-64"
-          style={{ clipPath: BLOB_TOP }}
+          width={912}
+          height={912}
+          className="absolute top-[58%] left-1/2 w-44 -translate-x-[72%] rotate-[6deg] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.12)] sm:w-60 lg:w-72"
         />
       </div>
     </section>
