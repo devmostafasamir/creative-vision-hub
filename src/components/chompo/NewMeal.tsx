@@ -1,6 +1,6 @@
-import chickenHand from "@/assets/cut-chicken-hand.png";
-import sunglassesBurger from "@/assets/cut-sunglasses-burger.png";
-import handsSandwich from "@/assets/cut-hands-sandwich.png";
+import chickenHand from "@/assets/collage-chicken-hand.jpg";
+import sunglassesBurger from "@/assets/collage-sunglasses-burger.jpg";
+import handsSandwich from "@/assets/collage-hands-sandwich.jpg";
 import { Marquee } from "./Marquee";
 
 /**
@@ -24,6 +24,52 @@ function Line({ durationSeconds }: { durationSeconds: number }) {
   );
 }
 
+/**
+ * A hand-torn looking organic blob that holds a food photo, with a second
+ * offset blob of flat colour peeking out behind it — the paper-collage trick
+ * that keeps the cutouts from reading as floating rectangles.
+ */
+function Blob({
+  src,
+  alt,
+  className,
+  blobRadius,
+  backRadius,
+  backClassName,
+  rotate,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+  blobRadius: string;
+  backRadius: string;
+  backClassName: string;
+  rotate: string;
+}) {
+  return (
+    <div className={`absolute ${className}`} style={{ transform: `rotate(${rotate})` }}>
+      <div
+        className={`absolute inset-0 translate-x-[-6%] translate-y-[5%] scale-[1.06] ${backClassName}`}
+        style={{ borderRadius: backRadius }}
+        aria-hidden="true"
+      />
+      <div
+        className="relative h-full w-full overflow-hidden ring-[6px] ring-cream drop-shadow-[0_22px_38px_rgba(0,0,0,0.18)]"
+        style={{ borderRadius: blobRadius }}
+      >
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          width={900}
+          height={900}
+          className="h-full w-full scale-[1.08] object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
 export function NewMeal() {
   return (
     <section className="relative isolate flex h-[420px] items-center overflow-hidden bg-cream sm:h-[520px] lg:h-[580px]">
@@ -39,29 +85,32 @@ export function NewMeal() {
 
       {/* Vertical collage column sitting over the type */}
       <div className="pointer-events-none absolute inset-0 z-20 mx-auto max-w-[1100px]">
-        <img
+        <Blob
           src={handsSandwich}
-          alt="Crispy fried chicken sandwich"
-          loading="lazy"
-          width={912}
-          height={1104}
-          className="absolute top-[-8%] left-1/2 w-48 -translate-x-[110%] rotate-[8deg] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.12)] sm:w-64 lg:w-80"
+          alt="Crispy fried chicken sandwich being bitten"
+          className="top-[-6%] left-1/2 h-40 w-40 -translate-x-[125%] sm:h-56 sm:w-56 lg:h-64 lg:w-64"
+          blobRadius="62% 38% 55% 45% / 48% 58% 42% 52%"
+          backRadius="55% 45% 48% 52% / 58% 44% 56% 42%"
+          backClassName="bg-signal/85"
+          rotate="-6deg"
         />
-        <img
+        <Blob
           src={sunglassesBurger}
           alt="Person in sunglasses biting a burger"
-          loading="lazy"
-          width={912}
-          height={912}
-          className="absolute top-[16%] left-1/2 w-52 -translate-x-[38%] rotate-[-2deg] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.12)] sm:w-72 lg:w-[22rem]"
+          className="top-[18%] left-1/2 h-48 w-48 -translate-x-[42%] sm:h-64 sm:w-64 lg:h-80 lg:w-80"
+          blobRadius="48% 52% 40% 60% / 55% 45% 58% 45%"
+          backRadius="58% 42% 52% 48% / 45% 60% 40% 55%"
+          backClassName="bg-[#123f2b]"
+          rotate="4deg"
         />
-        <img
+        <Blob
           src={chickenHand}
           alt="Saucy spicy fried chicken drumstick"
-          loading="lazy"
-          width={912}
-          height={912}
-          className="absolute top-[58%] left-1/2 w-44 -translate-x-[72%] rotate-[6deg] object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.12)] sm:w-60 lg:w-72"
+          className="top-[56%] left-1/2 h-36 w-36 -translate-x-[-10%] sm:h-52 sm:w-52 lg:h-60 lg:w-60"
+          blobRadius="55% 45% 62% 38% / 42% 58% 42% 58%"
+          backRadius="45% 55% 38% 62% / 60% 42% 58% 40%"
+          backClassName="bg-[#7fb6e8]"
+          rotate="-8deg"
         />
       </div>
     </section>
