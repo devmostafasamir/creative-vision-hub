@@ -113,7 +113,10 @@ export function Footer() {
               <Sparkle className="right-[13%] top-[52%] rotate-6 text-[#a3e635]" />
             </div>
 
-            <p className="mono-label relative text-gold">Available for new work</p>
+            <p className="relative inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 mono-label text-gold">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+              Available for new work
+            </p>
 
             <h2 className="relative mx-auto mt-5 max-w-2xl font-display text-3xl font-semibold leading-[1.15] tracking-tight md:text-5xl">
               Let&apos;s build something{" "}
