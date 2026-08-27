@@ -133,7 +133,7 @@ export function Footer() {
               </a>
             </div>
           </div>
-        </Reveal>
+        
 
         {/* Link columns */}
         <div className="mt-16 grid gap-10 pt-4 md:grid-cols-[1.4fr_repeat(4,1fr)] md:gap-8">
