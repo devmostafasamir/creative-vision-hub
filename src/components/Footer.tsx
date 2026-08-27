@@ -194,7 +194,9 @@ export function Footer() {
             © {new Date().getFullYear()} Mostafa Samir — Banking &amp; Fintech Full Stack Engineer
           </span>
         </div>
-        </div>
+          </div>
+        </Reveal>
+
       </div>
 
     </footer>
