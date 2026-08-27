@@ -188,12 +188,15 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border py-8 text-xs text-muted-foreground md:flex-row">
-          <span>Tanta, Egypt · Remote · Full-time or contract</span>
-          <span>
-            © {new Date().getFullYear()} Mostafa Samir — Banking &amp; Fintech Full Stack Engineer
-          </span>
-        </div>
+              </div>
+
+              <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row">
+                <span>Tanta, Egypt · Remote · Full-time or contract</span>
+                <span>
+                  © {new Date().getFullYear()} Mostafa Samir — Banking &amp; Fintech Full Stack Engineer
+                </span>
+              </div>
+            </div>
           </div>
         </Reveal>
 
