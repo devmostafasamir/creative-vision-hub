@@ -186,8 +186,6 @@ export function Footer() {
               </ul>
             </nav>
           ))}
-        </div>
-
               </div>
 
               <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row">
