@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as MotorcyclesIndexRouteImport } from './routes/motorcycles.index'
 import { Route as MotorcyclesBikeIdRouteImport } from './routes/motorcycles.$bikeId'
 
@@ -36,6 +38,16 @@ const MaintenanceRoute = MaintenanceRouteImport.update({
   path: '/maintenance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MotorcyclesIndexRoute = MotorcyclesIndexRouteImport.update({
   id: '/motorcycles/',
   path: '/motorcycles/',
@@ -52,6 +64,8 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/jobs': typeof JobsRoute
   '/maintenance': typeof MaintenanceRoute
+  '/onboarding': typeof OnboardingRoute
+  '/partner': typeof PartnerRoute
   '/motorcycles/$bikeId': typeof MotorcyclesBikeIdRoute
   '/motorcycles/': typeof MotorcyclesIndexRoute
 }
@@ -60,6 +74,8 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/jobs': typeof JobsRoute
   '/maintenance': typeof MaintenanceRoute
+  '/onboarding': typeof OnboardingRoute
+  '/partner': typeof PartnerRoute
   '/motorcycles/$bikeId': typeof MotorcyclesBikeIdRoute
   '/motorcycles': typeof MotorcyclesIndexRoute
 }
@@ -69,6 +85,8 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/jobs': typeof JobsRoute
   '/maintenance': typeof MaintenanceRoute
+  '/onboarding': typeof OnboardingRoute
+  '/partner': typeof PartnerRoute
   '/motorcycles/$bikeId': typeof MotorcyclesBikeIdRoute
   '/motorcycles/': typeof MotorcyclesIndexRoute
 }
@@ -79,6 +97,8 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/jobs'
     | '/maintenance'
+    | '/onboarding'
+    | '/partner'
     | '/motorcycles/$bikeId'
     | '/motorcycles/'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +107,8 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/jobs'
     | '/maintenance'
+    | '/onboarding'
+    | '/partner'
     | '/motorcycles/$bikeId'
     | '/motorcycles'
   id:
@@ -95,6 +117,8 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/jobs'
     | '/maintenance'
+    | '/onboarding'
+    | '/partner'
     | '/motorcycles/$bikeId'
     | '/motorcycles/'
   fileRoutesById: FileRoutesById
@@ -104,6 +128,8 @@ export interface RootRouteChildren {
   HowItWorksRoute: typeof HowItWorksRoute
   JobsRoute: typeof JobsRoute
   MaintenanceRoute: typeof MaintenanceRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PartnerRoute: typeof PartnerRoute
   MotorcyclesBikeIdRoute: typeof MotorcyclesBikeIdRoute
   MotorcyclesIndexRoute: typeof MotorcyclesIndexRoute
 }
@@ -138,6 +164,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaintenanceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/motorcycles/': {
       id: '/motorcycles/'
       path: '/motorcycles'
@@ -160,6 +200,8 @@ const rootRouteChildren: RootRouteChildren = {
   HowItWorksRoute: HowItWorksRoute,
   JobsRoute: JobsRoute,
   MaintenanceRoute: MaintenanceRoute,
+  OnboardingRoute: OnboardingRoute,
+  PartnerRoute: PartnerRoute,
   MotorcyclesBikeIdRoute: MotorcyclesBikeIdRoute,
   MotorcyclesIndexRoute: MotorcyclesIndexRoute,
 }
