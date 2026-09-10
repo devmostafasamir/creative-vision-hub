@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as JobsRouteImport } from './routes/jobs'
+import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as MotorcyclesIndexRouteImport } from './routes/motorcycles.index'
+import { Route as MotorcyclesBikeIdRouteImport } from './routes/motorcycles.$bikeId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaintenanceRoute = MaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotorcyclesIndexRoute = MotorcyclesIndexRouteImport.update({
+  id: '/motorcycles/',
+  path: '/motorcycles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotorcyclesBikeIdRoute = MotorcyclesBikeIdRouteImport.update({
+  id: '/motorcycles/$bikeId',
+  path: '/motorcycles/$bikeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/jobs': typeof JobsRoute
+  '/maintenance': typeof MaintenanceRoute
+  '/motorcycles/$bikeId': typeof MotorcyclesBikeIdRoute
+  '/motorcycles/': typeof MotorcyclesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/jobs': typeof JobsRoute
+  '/maintenance': typeof MaintenanceRoute
+  '/motorcycles/$bikeId': typeof MotorcyclesBikeIdRoute
+  '/motorcycles': typeof MotorcyclesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/jobs': typeof JobsRoute
+  '/maintenance': typeof MaintenanceRoute
+  '/motorcycles/$bikeId': typeof MotorcyclesBikeIdRoute
+  '/motorcycles/': typeof MotorcyclesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/how-it-works'
+    | '/jobs'
+    | '/maintenance'
+    | '/motorcycles/$bikeId'
+    | '/motorcycles/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/how-it-works'
+    | '/jobs'
+    | '/maintenance'
+    | '/motorcycles/$bikeId'
+    | '/motorcycles'
+  id:
+    | '__root__'
+    | '/'
+    | '/how-it-works'
+    | '/jobs'
+    | '/maintenance'
+    | '/motorcycles/$bikeId'
+    | '/motorcycles/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  JobsRoute: typeof JobsRoute
+  MaintenanceRoute: typeof MaintenanceRoute
+  MotorcyclesBikeIdRoute: typeof MotorcyclesBikeIdRoute
+  MotorcyclesIndexRoute: typeof MotorcyclesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maintenance': {
+      id: '/maintenance'
+      path: '/maintenance'
+      fullPath: '/maintenance'
+      preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/motorcycles/': {
+      id: '/motorcycles/'
+      path: '/motorcycles'
+      fullPath: '/motorcycles/'
+      preLoaderRoute: typeof MotorcyclesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/motorcycles/$bikeId': {
+      id: '/motorcycles/$bikeId'
+      path: '/motorcycles/$bikeId'
+      fullPath: '/motorcycles/$bikeId'
+      preLoaderRoute: typeof MotorcyclesBikeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  JobsRoute: JobsRoute,
+  MaintenanceRoute: MaintenanceRoute,
+  MotorcyclesBikeIdRoute: MotorcyclesBikeIdRoute,
+  MotorcyclesIndexRoute: MotorcyclesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
