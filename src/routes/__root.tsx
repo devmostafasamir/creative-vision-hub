@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { MobileBottomNav, SiteFooter, SiteNav } from "@/components/site-nav";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -77,26 +78,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "FinTech Portfolio Pro: A premium single-page portfolio showcasing a Full-Stack Developer's expertise in banking and FinTech." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "FinTech Portfolio Pro: A premium single-page portfolio showcasing a Full-Stack Developer's expertise in banking and FinTech." },
+      { title: "MotoRent — Rent a bike. Start earning." },
+      {
+        name: "description",
+        content:
+          "Rent a work-ready motorcycle, find delivery jobs and manage your rider journey in one platform.",
+      },
+      { name: "author", content: "MotoRent" },
+      { property: "og:title", content: "MotoRent — Rent a bike. Start earning." },
+      {
+        property: "og:description",
+        content:
+          "Work-ready motorcycles for delivery riders, plus jobs, maintenance and earnings tracking.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "FinTech Portfolio Pro: A premium single-page portfolio showcasing a Full-Stack Developer's expertise in banking and FinTech." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e48d2db8-502c-4162-a250-6c6a1f11e61e/id-preview-d0ce9239--f1007057-ee38-449f-8aa9-544b472a5bf0.lovable.app-1781081962063.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e48d2db8-502c-4162-a250-6c6a1f11e61e/id-preview-d0ce9239--f1007057-ee38-449f-8aa9-544b472a5bf0.lovable.app-1781081962063.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap",
+      },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
@@ -122,26 +131,17 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout> | undefined;
-    const onScroll = () => {
-      document.documentElement.classList.add("is-scrolling");
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        document.documentElement.classList.remove("is-scrolling");
-      }, 600);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      clearTimeout(timeout);
-    };
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <SiteNav />
+        <main className="flex-1 pb-16 lg:pb-0">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <MobileBottomNav />
+      </div>
     </QueryClientProvider>
   );
 }
